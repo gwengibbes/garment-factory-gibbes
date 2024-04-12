@@ -2,12 +2,14 @@ const { Schema, model, models } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const UserSchema = new Schema(
+//Username property with type String, make it required and make each username unique
   {
     username: {
       type: String,
       required: true,
       unique: true,
     },
+//Password property with type String, make it required, make the required minimum length be 5 characters and the max 20 characters
     password: {
       type: String,
       required: true,
@@ -16,6 +18,7 @@ const UserSchema = new Schema(
     },
   },
   {
+  //Method property where the password is checked and compared before being approved
     methods: {
       checkPassword(password) {
         return bcrypt.compare(password, this.password);
