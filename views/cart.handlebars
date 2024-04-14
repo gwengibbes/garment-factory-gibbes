@@ -1,0 +1,33 @@
+
+
+<div>
+    <div>Number of items in cart:  {{cart.garments.length}}</div>
+
+    <div>Cart items:</div>
+    <ul class="cart-items">
+        {{#each cart.garments}}
+        <li>
+            <div><img class="featured-image" src="/garment-images/{{this.garment.image}}" alt="Customer Favorite Images Here"></div>
+            <div>{{this.garment.name}}</div>
+            <div>Price per item: ${{this.garment.price}} </div>
+            <div>
+                <input value="{{this.quantity}}" type="number" step="1" id="quantity_{{this.garment._id}}" name="quantity_{{this.garment._id}}">
+                <button class="btn-update-quantity" data-garment="{{this.garment._id}}">Update Quantity</button>
+            </div>
+            <button class="btn-remove-from-cart" data-garment="{{this.garment._id}}">Remove from cart</button>
+        </li>
+        {{/each }}
+    </ul>
+
+    <button id="btnEmptyCart">Empty Cart</button>
+
+    <div>Cart Sub Total: ${{cartTotals.subTotal}}</div>
+    <div>Taxes Payable: ${{cartTotals.taxes}}</div>
+    <div>Cart Total: ${{cartTotals.total}}</div>
+    <div>
+        Calculate Tax: 
+        <input value="{{cart.zipCode}}" id="zipCode" type="text" placeholder="Zip Code" >
+        <button id="addZipCode">Calculate</button>
+    </div>
+
+</div>

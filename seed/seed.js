@@ -4,8 +4,7 @@ if (process.env.MONGODB_URI) {
     "SEEDING MONGODB PRODUCTION DATABASE!!!\n".repeat(3)
   );
   console.log("\x1b[31m%s\x1b[0m", "Don't forget to clear MONGODB_URI!\n");
-  console.log(
-    "\x1b[33m%s\x1b[0m",
+  console.log("\x1b[33m%s\x1b[0m",
     "Run 'export MONGODB_URI=' or close this terminal after seeding.",
     "\n"
   );
@@ -21,43 +20,47 @@ connection.once("open", async function () {
   await User.create({ username: "gwen", password: "meatloaf" });
 
   const menCategory = await Category.create({ name: "Men" });
-  await Category.create({ name: "Women" });
-  await Category.create({ name: "Sale" });
-  await Category.create({ name: "Customer Favorites" });
-  await Category.create({ name: "New Releases" });
+  const womenCategory = await Category.create({ name: "Women" });
+  const saleCategory = await Category.create({ name: "Sale" });
+  const customerFavoritesCategory = await Category.create({ name: "Customer Favorites" });
+  const newReleasesCategory = await Category.create({ name: "New Releases" });
 
   // Garments men's polo shirt size small 
-  const blackPoloShirt =  await Garment.create({ 
+  const blackPoloShirtSm =  await Garment.create({ 
     name: "Sample black polo shirt", 
     type: 'polo shirt', 
     color: 'black', 
     size: 'small', 
     price: 50, 
+    // TODO: Generate random string for the SKU
     sku: 't-12', 
-    quantity: 100 
+    quantity: 100,
+    image: 'men-s-polo-shirt-black.png'
   });
 
-  const greenPoloShirt =  await Garment.create({ 
+  const greenPoloShirtSm =  await Garment.create({ 
     name: "Sample green polo shirt", 
     type: 'polo shirt', 
     color: 'green', 
     size: 'small', 
     price: 50, 
     sku: 't-12', 
-    quantity: 100 
+    quantity: 100,
+    image: 'men-s-polo-shirt-green.png'
   });
 
-  const greyPoloShirt =  await Garment.create({ 
+  const greyPoloShirtSm =  await Garment.create({ 
     name: "Sample grey polo shirt", 
     type: 'polo shirt', 
     color: 'grey', 
     size: 'small', 
     price: 50, 
     sku: 't-12', 
-    quantity: 100 
+    quantity: 100,
+    image: 'men-s-polo-shirt-grey.png'
   });
 
-  const lightGreenPoloShirt =  await Garment.create({ 
+  const lightGreenPoloShirtSm =  await Garment.create({ 
     name: "Sample light green polo shirt", 
     type: 'polo shirt', 
     color: 'light green', 
@@ -67,7 +70,7 @@ connection.once("open", async function () {
     quantity: 100 
   });
 
-  const orangePoloShirt =  await Garment.create({ 
+  const orangePoloShirtSm =  await Garment.create({ 
     name: "Sample orange polo shirt", 
     type: 'polo shirt', 
     color: 'orange', 
@@ -77,7 +80,7 @@ connection.once("open", async function () {
     quantity: 100 
   });
 
-  const redPoloShirt =  await Garment.create({ 
+  const redPoloShirtSm =  await Garment.create({ 
     name: "Sample red polo shirt", 
     type: 'polo shirt', 
     color: 'red', 
@@ -87,7 +90,7 @@ connection.once("open", async function () {
     quantity: 100 
   });
 
-  const tealPoloShirt =  await Garment.create({ 
+  const tealPoloShirtSm =  await Garment.create({ 
     name: "Sample teal polo shirt", 
     type: 'polo shirt', 
     color: 'teal', 
@@ -98,7 +101,7 @@ connection.once("open", async function () {
   });
 
 // Garments men's shirt polo size medium  
-const blackPoloShirt =  await Garment.create({ 
+const blackPoloShirtMd =  await Garment.create({ 
   name: "Sample black polo shirt", 
   type: 'polo shirt', 
   color: 'black', 
@@ -108,7 +111,7 @@ const blackPoloShirt =  await Garment.create({
   quantity: 100 
 });
 
-const greenPoloShirt =  await Garment.create({ 
+const greenPoloShirtMd =  await Garment.create({ 
   name: "Sample green polo shirt", 
   type: 'polo shirt', 
   color: 'green', 
@@ -118,7 +121,7 @@ const greenPoloShirt =  await Garment.create({
   quantity: 100 
 });
 
-const greyPoloShirt =  await Garment.create({ 
+const greyPoloShirtMd =  await Garment.create({ 
   name: "Sample grey polo shirt", 
   type: 'polo shirt', 
   color: 'grey', 
@@ -128,7 +131,7 @@ const greyPoloShirt =  await Garment.create({
   quantity: 100 
 });
 
-const lightGreenPoloShirt =  await Garment.create({ 
+const lightGreenPoloShirtMd =  await Garment.create({ 
   name: "Sample light green polo shirt", 
   type: 'polo shirt', 
   color: 'light green', 
@@ -138,7 +141,7 @@ const lightGreenPoloShirt =  await Garment.create({
   quantity: 100 
 });
 
-const orangePoloShirt =  await Garment.create({ 
+const orangePoloShirtMd =  await Garment.create({ 
   name: "Sample orange polo shirt", 
   type: 'polo shirt', 
   color: 'orange', 
@@ -148,7 +151,7 @@ const orangePoloShirt =  await Garment.create({
   quantity: 100 
 });
 
-const redPoloShirt =  await Garment.create({ 
+const redPoloShirtMd =  await Garment.create({ 
   name: "Sample red polo shirt", 
   type: 'polo shirt', 
   color: 'red', 
@@ -158,7 +161,7 @@ const redPoloShirt =  await Garment.create({
   quantity: 100 
 });
 
-const tealPoloShirt =  await Garment.create({ 
+const tealPoloShirtMd =  await Garment.create({ 
   name: "Sample teal polo shirt", 
   type: 'polo shirt', 
   color: 'teal', 
@@ -169,7 +172,7 @@ const tealPoloShirt =  await Garment.create({
 });
 
   // Garments men's shirt polo size large  
-  const blackPoloShirt =  await Garment.create({ 
+  const blackPoloShirtLg =  await Garment.create({ 
     name: "Sample black polo shirt", 
     type: 'polo shirt', 
     color: 'black', 
@@ -179,7 +182,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const greenPoloShirt =  await Garment.create({ 
+  const greenPoloShirtLg =  await Garment.create({ 
     name: "Sample green polo shirt", 
     type: 'polo shirt', 
     color: 'green', 
@@ -189,7 +192,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const greyPoloShirt =  await Garment.create({ 
+  const greyPoloShirtLg =  await Garment.create({ 
     name: "Sample grey polo shirt", 
     type: 'polo shirt', 
     color: 'grey', 
@@ -199,7 +202,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const lightGreenPoloShirt =  await Garment.create({ 
+  const lightGreenPoloShirtLg =  await Garment.create({ 
     name: "Sample light green polo shirt", 
     type: 'polo shirt', 
     color: 'light green', 
@@ -209,7 +212,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const orangePoloShirt =  await Garment.create({ 
+  const orangePoloShirtLg =  await Garment.create({ 
     name: "Sample orange polo shirt", 
     type: 'polo shirt', 
     color: 'orange', 
@@ -219,7 +222,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const redPoloShirt =  await Garment.create({ 
+  const redPoloShirtLg =  await Garment.create({ 
     name: "Sample red polo shirt", 
     type: 'polo shirt', 
     color: 'red', 
@@ -229,7 +232,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const tealPoloShirt =  await Garment.create({ 
+  const tealPoloShirtLg =  await Garment.create({ 
     name: "Sample teal polo shirt", 
     type: 'polo shirt', 
     color: 'teal', 
@@ -240,7 +243,7 @@ const tealPoloShirt =  await Garment.create({
   });
 
   // Garments men's shirt polo size XL   
-  const blackPoloShirt =  await Garment.create({ 
+  const blackPoloShirtXl =  await Garment.create({ 
     name: "Sample black polo shirt", 
     type: 'polo shirt', 
     color: 'black', 
@@ -250,7 +253,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const greenPoloShirt =  await Garment.create({ 
+  const greenPoloShirtXl =  await Garment.create({ 
     name: "Sample green polo shirt", 
     type: 'polo shirt', 
     color: 'green', 
@@ -260,7 +263,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const greyPoloShirt =  await Garment.create({ 
+  const greyPoloShirtXl =  await Garment.create({ 
     name: "Sample grey polo shirt", 
     type: 'polo shirt', 
     color: 'grey', 
@@ -270,7 +273,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const lightGreenPoloShirt =  await Garment.create({ 
+  const lightGreenPoloShirtXl =  await Garment.create({ 
     name: "Sample light green polo shirt", 
     type: 'polo shirt', 
     color: 'light green', 
@@ -280,7 +283,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const orangePoloShirt =  await Garment.create({ 
+  const orangePoloShirtXl =  await Garment.create({ 
     name: "Sample orange polo shirt", 
     type: 'polo shirt', 
     color: 'orange', 
@@ -290,7 +293,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const redPoloShirt =  await Garment.create({ 
+  const redPoloShirtXl =  await Garment.create({ 
     name: "Sample red polo shirt", 
     type: 'polo shirt', 
     color: 'red', 
@@ -300,7 +303,7 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
   
-  const tealPoloShirt =  await Garment.create({ 
+  const tealPoloShirtXl =  await Garment.create({ 
     name: "Sample teal polo shirt", 
     type: 'polo shirt', 
     color: 'teal', 
@@ -310,681 +313,689 @@ const tealPoloShirt =  await Garment.create({
     quantity: 100 
   });
 
-  // Garments men's v neck shirt colored sleeves size small 
-  const blackVNeckColoredSleevesShirt =  await Garment.create({ 
-    name: "Sample black v neck colored sleeves shirt", 
-    type: 'v neck colored sleeves shirt', 
-    color: 'black', 
-    size: 'small', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+  // TODO: Update variable names for each garment
+   
+//   // Garments men's v neck shirt colored sleeves size small 
+//   const blackVNeckColoredSleevesShirt =  await Garment.create({ 
+//     name: "Sample black v neck colored sleeves shirt", 
+//     type: 'v neck colored sleeves shirt', 
+//     color: 'black', 
+//     size: 'small', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-  const blueDarkVNeckColoredSleevesShirt =  await Garment.create({ 
-    name: "Sample blue dark v neck colored sleeves shirt", 
-    type: 'v neck colored sleeves shirt', 
-    color: 'blue dark', 
-    size: 'small', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const blueDarkVNeckColoredSleevesShirt =  await Garment.create({ 
+//     name: "Sample blue dark v neck colored sleeves shirt", 
+//     type: 'v neck colored sleeves shirt', 
+//     color: 'blue dark', 
+//     size: 'small', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-  const blueLightVNeckColoredSleevesShirt =  await Garment.create({ 
-    name: "Sample blue light v neck colored sleeves shirt", 
-    type: 'v neck colored sleeves shirt', 
-    color: 'blue light', 
-    size: 'small', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const blueLightVNeckColoredSleevesShirt =  await Garment.create({ 
+//     name: "Sample blue light v neck colored sleeves shirt", 
+//     type: 'v neck colored sleeves shirt', 
+//     color: 'blue light', 
+//     size: 'small', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-  const blueVNeckColoredSleevesShirt =  await Garment.create({ 
-    name: "Sample blue v neck colored sleeves shirt", 
-    type: 'v neck colored sleeves shirt', 
-    color: 'blue', 
-    size: 'small', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const blueVNeckColoredSleevesShirt =  await Garment.create({ 
+//     name: "Sample blue v neck colored sleeves shirt", 
+//     type: 'v neck colored sleeves shirt', 
+//     color: 'blue', 
+//     size: 'small', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-  const greenVNeckColoredSleevesShirt =  await Garment.create({ 
-    name: "Sample green v neck colored sleeves shirt", 
-    type: 'v neck colored sleeves shirt', 
-    color: 'green', 
-    size: 'small', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const greenVNeckColoredSleevesShirt =  await Garment.create({ 
+//     name: "Sample green v neck colored sleeves shirt", 
+//     type: 'v neck colored sleeves shirt', 
+//     color: 'green', 
+//     size: 'small', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-  const orangeVNeckColoredSleevesShirt =  await Garment.create({ 
-    name: "Sample orange v neck colored sleeves shirt", 
-    type: 'v neck colored sleeves shirt', 
-    color: 'orange', 
-    size: 'small', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const orangeVNeckColoredSleevesShirt =  await Garment.create({ 
+//     name: "Sample orange v neck colored sleeves shirt", 
+//     type: 'v neck colored sleeves shirt', 
+//     color: 'orange', 
+//     size: 'small', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-  const purpleVNeckColoredSleevesShirt =  await Garment.create({ 
-    name: "Sample purple v neck colored sleeves shirt", 
-    type: 'v neck colored sleeves shirt', 
-    color: 'purple', 
-    size: 'small', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const purpleVNeckColoredSleevesShirt =  await Garment.create({ 
+//     name: "Sample purple v neck colored sleeves shirt", 
+//     type: 'v neck colored sleeves shirt', 
+//     color: 'purple', 
+//     size: 'small', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-  const redVNeckColoredSleevesShirt =  await Garment.create({ 
-    name: "Sample red v neck colored sleeves shirt", 
-    type: 'v neck colored sleeves shirt', 
-    color: 'red', 
-    size: 'small', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const redVNeckColoredSleevesShirt =  await Garment.create({ 
+//     name: "Sample red v neck colored sleeves shirt", 
+//     type: 'v neck colored sleeves shirt', 
+//     color: 'red', 
+//     size: 'small', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-  const yellowVNeckColoredSleevesShirt =  await Garment.create({ 
-    name: "Sample yellow v neck colored sleeves shirt", 
-    type: 'v neck colored sleeves shirt', 
-    color: 'yellow', 
-    size: 'small', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const yellowVNeckColoredSleevesShirt =  await Garment.create({ 
+//     name: "Sample yellow v neck colored sleeves shirt", 
+//     type: 'v neck colored sleeves shirt', 
+//     color: 'yellow', 
+//     size: 'small', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-// Garments men's v neck shirt colored sleeves size medium 
-const blackVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample black v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'black', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// // Garments men's v neck shirt colored sleeves size medium 
+// const blackVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample black v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'black', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const blueDarkVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample blue dark v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'blue dark', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const blueDarkVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample blue dark v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'blue dark', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const blueLightVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample blue light v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'blue light', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const blueLightVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample blue light v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'blue light', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const blueVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample blue v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'blue', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const blueVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample blue v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'blue', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const greenVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample green v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'green', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const greenVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample green v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'green', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const orangeVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample orange v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'orange', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const orangeVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample orange v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'orange', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const purpleVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample purple v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'purple', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const purpleVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample purple v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'purple', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const redVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample red v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'red', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const redVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample red v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'red', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const yellowVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample yellow v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'yellow', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const yellowVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample yellow v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'yellow', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-// Garments men's v neck shirt colored sleeves size large 
-const blackVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample black v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'black', 
-  size: 'large', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// // Garments men's v neck shirt colored sleeves size large 
+// const blackVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample black v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'black', 
+//   size: 'large', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const blueDarkVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample blue dark v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'blue dark', 
-  size: 'large', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const blueDarkVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample blue dark v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'blue dark', 
+//   size: 'large', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const blueLightVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample blue light v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'blue light', 
-  size: 'large, 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const blueLightVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample blue light v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'blue light', 
+//   size: 'large, 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const blueVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample blue v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'blue', 
-  size: 'large', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const blueVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample blue v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'blue', 
+//   size: 'large', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const greenVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample green v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'green', 
-  size: 'large', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const greenVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample green v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'green', 
+//   size: 'large', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const orangeVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample orange v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'orange', 
-  size: 'large', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const orangeVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample orange v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'orange', 
+//   size: 'large', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const purpleVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample purple v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'purple', 
-  size: 'large', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const purpleVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample purple v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'purple', 
+//   size: 'large', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const redVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample red v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'red', 
-  size: 'large', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const redVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample red v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'red', 
+//   size: 'large', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const yellowVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample yellow v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'yellow', 
-  size: 'large', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const yellowVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample yellow v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'yellow', 
+//   size: 'large', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-// Garments men's v neck shirt colored sleeves size XL
-const blackVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample black v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'black', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// // Garments men's v neck shirt colored sleeves size XL
+// const blackVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample black v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'black', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const blueDarkVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample blue dark v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'blue dark', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const blueDarkVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample blue dark v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'blue dark', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const blueLightVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample blue light v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'blue light', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const blueLightVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample blue light v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'blue light', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const blueVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample blue v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'blue', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const blueVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample blue v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'blue', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const greenVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample green v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'green', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const greenVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample green v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'green', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const orangeVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample orange v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'orange', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const orangeVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample orange v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'orange', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const purpleVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample purple v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'purple', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const purpleVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample purple v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'purple', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const redVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample red v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'red', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const redVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample red v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'red', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const yellowVNeckColoredSleevesShirt =  await Garment.create({ 
-  name: "Sample yellow v neck colored sleeves shirt", 
-  type: 'v neck colored sleeves shirt', 
-  color: 'yellow', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const yellowVNeckColoredSleevesShirt =  await Garment.create({ 
+//   name: "Sample yellow v neck colored sleeves shirt", 
+//   type: 'v neck colored sleeves shirt', 
+//   color: 'yellow', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-// Garments women's sleeveless shirt size xsmall   
-const redSleevelessShirt =  await Garment.create({ 
-  name: "Sample red sleeveless shirt", 
-  type: 'sleeveless shirt', 
-  color: 'red', 
-  size: 'xsmall', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// // Garments women's sleeveless shirt size xsmall   
+// const redSleevelessShirt =  await Garment.create({ 
+//   name: "Sample red sleeveless shirt", 
+//   type: 'sleeveless shirt', 
+//   color: 'red', 
+//   size: 'xsmall', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const whiteSleevelessShirt =  await Garment.create({ 
-  name: "Sample white sleeveless shirt", 
-  type: 'sleeveless shirt', 
-  color: 'white', 
-  size: 'xsmall', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const whiteSleevelessShirt =  await Garment.create({ 
+//   name: "Sample white sleeveless shirt", 
+//   type: 'sleeveless shirt', 
+//   color: 'white', 
+//   size: 'xsmall', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-// Garments women's sleeveless shirt size small   
-const redSleevelessShirt =  await Garment.create({ 
-  name: "Sample red sleeveless shirt", 
-  type: 'sleeveless shirt', 
-  color: 'red', 
-  size: 'small', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// // Garments women's sleeveless shirt size small   
+// const redSleevelessShirt =  await Garment.create({ 
+//   name: "Sample red sleeveless shirt", 
+//   type: 'sleeveless shirt', 
+//   color: 'red', 
+//   size: 'small', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const whiteSleevelessShirt =  await Garment.create({ 
-  name: "Sample white sleeveless shirt", 
-  type: 'sleeveless shirt', 
-  color: 'white', 
-  size: 'small', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const whiteSleevelessShirt =  await Garment.create({ 
+//   name: "Sample white sleeveless shirt", 
+//   type: 'sleeveless shirt', 
+//   color: 'white', 
+//   size: 'small', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-// Garments women's sleeveless shirt size medium   
-const redSleevelessShirt =  await Garment.create({ 
-  name: "Sample red sleeveless shirt", 
-  type: 'sleeveless shirt', 
-  color: 'red', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// // Garments women's sleeveless shirt size medium   
+// const redSleevelessShirt =  await Garment.create({ 
+//   name: "Sample red sleeveless shirt", 
+//   type: 'sleeveless shirt', 
+//   color: 'red', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const whiteSleevelessShirt =  await Garment.create({ 
-  name: "Sample white sleeveless shirt", 
-  type: 'sleeveless shirt', 
-  color: 'white', 
-  size: 'medium', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
-// Garments women's sleeveless shirt size large  
-const redSleevelessShirt =  await Garment.create({ 
-  name: "Sample red sleeveless shirt", 
-  type: 'sleeveless shirt', 
-  color: 'red', 
-  size: 'large', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const whiteSleevelessShirt =  await Garment.create({ 
+//   name: "Sample white sleeveless shirt", 
+//   type: 'sleeveless shirt', 
+//   color: 'white', 
+//   size: 'medium', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
+// // Garments women's sleeveless shirt size large  
+// const redSleevelessShirt =  await Garment.create({ 
+//   name: "Sample red sleeveless shirt", 
+//   type: 'sleeveless shirt', 
+//   color: 'red', 
+//   size: 'large', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const whiteSleevelessShirt =  await Garment.create({ 
-  name: "Sample white sleeveless shirt", 
-  type: 'sleeveless shirt', 
-  color: 'white', 
-  size: 'large', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const whiteSleevelessShirt =  await Garment.create({ 
+//   name: "Sample white sleeveless shirt", 
+//   type: 'sleeveless shirt', 
+//   color: 'white', 
+//   size: 'large', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-// Garments women's sleeveless shirt size XL   
-const redSleevelessShirt =  await Garment.create({ 
-  name: "Sample red sleeveless shirt", 
-  type: 'sleeveless shirt', 
-  color: 'red', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// // Garments women's sleeveless shirt size XL   
+// const redSleevelessShirt =  await Garment.create({ 
+//   name: "Sample red sleeveless shirt", 
+//   type: 'sleeveless shirt', 
+//   color: 'red', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-const whiteSleevelessShirt =  await Garment.create({ 
-  name: "Sample white sleeveless shirt", 
-  type: 'sleeveless shirt', 
-  color: 'white', 
-  size: 'XL', 
-  price: 50, 
-  sku: 't-12', 
-  quantity: 100 
-});
+// const whiteSleevelessShirt =  await Garment.create({ 
+//   name: "Sample white sleeveless shirt", 
+//   type: 'sleeveless shirt', 
+//   color: 'white', 
+//   size: 'XL', 
+//   price: 50, 
+//   sku: 't-12', 
+//   quantity: 100 
+// });
 
-  // Garments women's v neck size xsmall   
-  const blackVNeckShirt =  await Garment.create({ 
-    name: "Sample black v neck shirt", 
-    type: 'v shirt', 
-    color: 'black', 
-    size: 'xsmall', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   // Garments women's v neck size xsmall   
+//   const blackVNeckShirt =  await Garment.create({ 
+//     name: "Sample black v neck shirt", 
+//     type: 'v shirt', 
+//     color: 'black', 
+//     size: 'xsmall', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
   
-  const pinkVNeckShirt =  await Garment.create({ 
-    name: "Sample pink v neck shirt", 
-    type: 'v shirt', 
-    color: 'pink', 
-    size: 'xsmall', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const pinkVNeckShirt =  await Garment.create({ 
+//     name: "Sample pink v neck shirt", 
+//     type: 'v shirt', 
+//     color: 'pink', 
+//     size: 'xsmall', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-  const purpleVNeckShirt =  await Garment.create({ 
-    name: "Sample purple v neck shirt", 
-    type: 'v shirt', 
-    color: 'purple', 
-    size: 'xsmall', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const purpleVNeckShirt =  await Garment.create({ 
+//     name: "Sample purple v neck shirt", 
+//     type: 'v shirt', 
+//     color: 'purple', 
+//     size: 'xsmall', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-  const whiteVNeckShirt =  await Garment.create({ 
-    name: "Sample white v neck shirt", 
-    type: 'v shirt', 
-    color: 'white', 
-    size: 'xsmall', 
-    price: 50, 
-    sku: 't-12', 
-    quantity: 100 
-  });
+//   const whiteVNeckShirt =  await Garment.create({ 
+//     name: "Sample white v neck shirt", 
+//     type: 'v shirt', 
+//     color: 'white', 
+//     size: 'xsmall', 
+//     price: 50, 
+//     sku: 't-12', 
+//     quantity: 100 
+//   });
 
-// Garments women's v neck size small   
-    const blackVNeckShirt =  await Garment.create({ 
-      name: "Sample black v neck shirt", 
-      type: 'v shirt', 
-      color: 'black', 
-      size: 'small', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+// // Garments women's v neck size small   
+//     const blackVNeckShirt =  await Garment.create({ 
+//       name: "Sample black v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'black', 
+//       size: 'small', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
     
-    const pinkVNeckShirt =  await Garment.create({ 
-      name: "Sample pink v neck shirt", 
-      type: 'v shirt', 
-      color: 'pink', 
-      size: 'small', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const pinkVNeckShirt =  await Garment.create({ 
+//       name: "Sample pink v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'pink', 
+//       size: 'small', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-    const purpleVNeckShirt =  await Garment.create({ 
-      name: "Sample purple v neck shirt", 
-      type: 'v shirt', 
-      color: 'purple', 
-      size: 'small', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const purpleVNeckShirt =  await Garment.create({ 
+//       name: "Sample purple v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'purple', 
+//       size: 'small', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-    const whiteVNeckShirt =  await Garment.create({ 
-      name: "Sample white v neck shirt", 
-      type: 'v shirt', 
-      color: 'white', 
-      size: 'small', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const whiteVNeckShirt =  await Garment.create({ 
+//       name: "Sample white v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'white', 
+//       size: 'small', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-    // Garments women's v neck size medium   
-    const blackVNeckShirt =  await Garment.create({ 
-      name: "Sample black v neck shirt", 
-      type: 'v shirt', 
-      color: 'black', 
-      size: 'medium', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     // Garments women's v neck size medium   
+//     const blackVNeckShirt =  await Garment.create({ 
+//       name: "Sample black v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'black', 
+//       size: 'medium', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
     
-    const pinkVNeckShirt =  await Garment.create({ 
-      name: "Sample pink v neck shirt", 
-      type: 'v shirt', 
-      color: 'pink', 
-      size: 'medium', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const pinkVNeckShirt =  await Garment.create({ 
+//       name: "Sample pink v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'pink', 
+//       size: 'medium', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-    const purpleVNeckShirt =  await Garment.create({ 
-      name: "Sample purple v neck shirt", 
-      type: 'v shirt', 
-      color: 'purple', 
-      size: 'medium', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const purpleVNeckShirt =  await Garment.create({ 
+//       name: "Sample purple v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'purple', 
+//       size: 'medium', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-    const whiteVNeckShirt =  await Garment.create({ 
-      name: "Sample white v neck shirt", 
-      type: 'v shirt', 
-      color: 'white', 
-      size: 'medium', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const whiteVNeckShirt =  await Garment.create({ 
+//       name: "Sample white v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'white', 
+//       size: 'medium', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
     
-    // Garments women's v neck size large  
-    const blackVNeckShirt =  await Garment.create({ 
-      name: "Sample black v neck shirt", 
-      type: 'v shirt', 
-      color: 'black', 
-      size: 'large', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     // Garments women's v neck size large  
+//     const blackVNeckShirt =  await Garment.create({ 
+//       name: "Sample black v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'black', 
+//       size: 'large', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
     
-    const pinkVNeckShirt =  await Garment.create({ 
-      name: "Sample pink v neck shirt", 
-      type: 'v shirt', 
-      color: 'pink', 
-      size: 'large', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const pinkVNeckShirt =  await Garment.create({ 
+//       name: "Sample pink v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'pink', 
+//       size: 'large', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-    const purpleVNeckShirt =  await Garment.create({ 
-      name: "Sample purple v neck shirt", 
-      type: 'v shirt', 
-      color: 'purple', 
-      size: 'large', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const purpleVNeckShirt =  await Garment.create({ 
+//       name: "Sample purple v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'purple', 
+//       size: 'large', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-    const whiteVNeckShirt =  await Garment.create({ 
-      name: "Sample white v neck shirt", 
-      type: 'v shirt', 
-      color: 'white', 
-      size: 'large', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const whiteVNeckShirt =  await Garment.create({ 
+//       name: "Sample white v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'white', 
+//       size: 'large', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-    // Garments women's v neck size XL   
-    const blackVNeckShirt =  await Garment.create({ 
-      name: "Sample black v neck shirt", 
-      type: 'v shirt', 
-      color: 'black', 
-      size: 'XL', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     // Garments women's v neck size XL   
+//     const blackVNeckShirt =  await Garment.create({ 
+//       name: "Sample black v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'black', 
+//       size: 'XL', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
     
-    const pinkVNeckShirt =  await Garment.create({ 
-      name: "Sample pink v neck shirt", 
-      type: 'v shirt', 
-      color: 'pink', 
-      size: 'XL', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const pinkVNeckShirt =  await Garment.create({ 
+//       name: "Sample pink v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'pink', 
+//       size: 'XL', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-    const purpleVNeckShirt =  await Garment.create({ 
-      name: "Sample purple v neck shirt", 
-      type: 'v shirt', 
-      color: 'purple', 
-      size: 'XL', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const purpleVNeckShirt =  await Garment.create({ 
+//       name: "Sample purple v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'purple', 
+//       size: 'XL', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-    const whiteVNeckShirt =  await Garment.create({ 
-      name: "Sample white v neck shirt", 
-      type: 'v shirt', 
-      color: 'white', 
-      size: 'XL', 
-      price: 50, 
-      sku: 't-12', 
-      quantity: 100 
-    });
+//     const whiteVNeckShirt =  await Garment.create({ 
+//       name: "Sample white v neck shirt", 
+//       type: 'v shirt', 
+//       color: 'white', 
+//       size: 'XL', 
+//       price: 50, 
+//       sku: 't-12', 
+//       quantity: 100 
+//     });
 
-  await GarmentCategories.create({garmentId: redShirt._id, categoryId: menCategory._id });
-  await GarmentCategories.create({garmentId: blueShirt._id,categoryId: menCategory._id });
+  await GarmentCategories.create({garment: blackPoloShirtSm._id, category: menCategory._id });
+  await GarmentCategories.create({garment: greenPoloShirtSm._id,category: menCategory._id });
+
+  await GarmentCategories.create({garment: greenPoloShirtSm._id, category: customerFavoritesCategory._id });
+  await GarmentCategories.create({garment: blackPoloShirtSm._id, category: customerFavoritesCategory._id });
+  await GarmentCategories.create({garment: greyPoloShirtSm._id, category: customerFavoritesCategory._id });
+
+  // TODO: Associate each garment with a category
 
   connection.close();
 });

@@ -2,12 +2,12 @@ const { Schema, model, models, SchemaTypes } = require("mongoose");
 
 const GarmentCategoriesSchema = new Schema({
 //Garment Id property with type String and a reference of Garment
-   garmentId:{
+garment:{
         type: String,
         ref: 'Garment'
     },
 //Category Id property with type String and a reference of Category
-    categoryId:{
+    category:{
         type: String,
         ref: 'Category'
     },

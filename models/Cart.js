@@ -8,7 +8,7 @@ const CartSchema = new Schema({
     },
 //Garment property with type String and a reference of Garment
     garments:[{
-        garmentId:{
+        garment:{
             type: String,
             ref: 'Garment'
         },
@@ -16,8 +16,12 @@ const CartSchema = new Schema({
         quantity:{
             type: Number, 
             required: true,  
-        }  
-    }]
+        }
+    }],
+    // Zip code to use to calculate taxes
+    zipCode: {
+        type: String,
+    }  
   })
 
   module.exports = models.Cart || model("Cart", CartSchema);

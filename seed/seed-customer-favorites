@@ -1,0 +1,38 @@
+ // Garments men's polo shirt size small 
+ const blackPoloShirtSm =  await Garment.create({ 
+    name: "Sample black polo shirt", 
+    type: 'polo shirt', 
+    color: 'black', 
+    size: 'small', 
+    price: 50, 
+    // TODO: Generate random string for the SKU
+    sku: 't-12', 
+    quantity: 100,
+    image: 'men-s-polo-shirt-black.png'
+  });
+
+  const greenPoloShirtSm =  await Garment.create({ 
+    name: "Sample green polo shirt", 
+    type: 'polo shirt', 
+    color: 'green', 
+    size: 'small', 
+    price: 50, 
+    sku: 't-12', 
+    quantity: 100,
+    image: 'men-s-polo-shirt-green.png'
+  });
+
+  const greyPoloShirtSm =  await Garment.create({ 
+    name: "Sample grey polo shirt", 
+    type: 'polo shirt', 
+    color: 'grey', 
+    size: 'small', 
+    price: 50, 
+    sku: 't-12', 
+    quantity: 100,
+    image: 'men-s-polo-shirt-grey.png'
+  });
+
+await GarmentCategories.create({garment: greenPoloShirtSm._id, category: customerFavoritesCategory._id });
+await GarmentCategories.create({garment: blackPoloShirtSm._id, category: customerFavoritesCategory._id });
+await GarmentCategories.create({garment: greyPoloShirtSm._id, category: customerFavoritesCategory._id });
