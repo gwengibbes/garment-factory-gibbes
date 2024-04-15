@@ -9,7 +9,7 @@ const Cart = require('../models/').Cart;
 const axios = require('axios');
 
 async function calculateTaxes(zipCode, cartSubtotal) {
-
+try {
   // Get the tax percentage from the API
   const res = await axios({
     url: 'https://api.api-ninjas.com/v1/salestax',
@@ -29,6 +29,9 @@ async function calculateTaxes(zipCode, cartSubtotal) {
   }
   const taxAmount = Number(res.data[0].total_rate);
   return taxAmount * cartSubtotal;
+} catch(error){
+  return 0;
+}
 }
 
 
