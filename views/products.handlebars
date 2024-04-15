@@ -1,0 +1,24 @@
+<main>
+    <div>
+        <div>
+            <div>
+                <h2 class="text-center text-lg mb-5">{{category.name}}</h2>
+                <div class="row">
+                    {{#each garments}}
+                        <div class="col-12 col-md-4">
+                            <div><img class="featured-image" src="/garment-images/{{this.garment.image}}"  width="100%" style="max-width: 280px" alt="{{this.garment.name}}"></div>
+                            <div>{{this.garment.name}}</div>
+                            <button class=" btn btn-primary btn-add-to-cart" data-garment="{{this.garment._id}}">Add to
+                                cart
+                            </button>
+
+                        </div>
+                    {{/each }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <section>
+    </section>
+</main>

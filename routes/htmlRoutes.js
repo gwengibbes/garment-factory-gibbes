@@ -23,7 +23,7 @@ async function calculateTaxes(zipCode, cartSubtotal) {
     }
   });
   // If no data is returned for the zip code
-  if(res.data.length === 0){
+  if (res.data.length === 0) {
     console.log('No tax data found');
     return 0;
   }
@@ -32,59 +32,96 @@ async function calculateTaxes(zipCode, cartSubtotal) {
 }
 
 
-router.get("/", async ({ session: { isLoggedIn } }, res) => {
+
+router.get("/", async ({session: {isLoggedIn}}, res) => {
   // Get the Customer favourites category
   const customerFavoritesCategory = await Category.findOne({
     name: 'Customer Favorites'
   }).lean();
+
+  const newReleasesCategory = await Category.findOne({
+    name: 'New Releases'
+  }).lean();
+
+  const allCategories = await Category.find().lean();
 
   // Get garments that are in the customer favorite category
   const customerFavourites = await GarmentCategories.find({
     category: customerFavoritesCategory._id
   }).populate('garment').limit(3).lean();
 
-  res.render("home", { isLoggedIn,  customerFavourites});
+  const newReleases = await GarmentCategories.find({
+    category: newReleasesCategory._id
+  }).populate('garment').limit(3).lean();
+
+  res.render("home", {isLoggedIn, customerFavourites, newReleases, allCategories});
 });
 
-router.get('/cart',async ({ session: { isLoggedIn, userId } }, res) => {
+router.get('/cart', async ({session: {isLoggedIn, userId}}, res) => {
+
+  const allCategories = await Category.find().lean();
 
   const cart = await Cart.findOne({
     user: userId
   }).populate('garments.garment').lean();
-  
+
+  if(!cart){
+    res.render("cart", {isLoggedIn});
+    return;
+  }
+
   let subTotal = 0;
-  cart.garments.forEach(garmentItem =>{
+  cart.garments.forEach(garmentItem => {
     subTotal = subTotal + (garmentItem.quantity * garmentItem.garment.price)
   })
 
   let taxes;
   // if a zip code is provided, calclate the tax
-  if(cart.zipCode) {
+  if (cart.zipCode) {
     taxes = await calculateTaxes(cart.zipCode, subTotal);
   }
-  
+
   // return calculated totals
   const cartTotals = {
     subTotal,
     taxes,
     total: subTotal + (taxes || 0),
   };
-  res.render("cart", { isLoggedIn,  cart, cartTotals});
+  res.render("cart", {isLoggedIn, cart, cartTotals, allCategories});
 
 });
 
+// Creates the page to show garments for each category
+router.get('/products', async (req, res) => {
+  const {isLoggedIn} = req.session;
+  const allCategories = await Category.find().lean();
+  // Get the category the user is browsing from the query string
+  const categoryId = req.query.category
+  // Find all garments in that category, and populate the garment and category properties
+  const garmentsInCategory = await GarmentCategories.find({
+    category: categoryId
+  }).populate(['garment', 'category']).lean();
+  let category;
+  // Check to ensure that the category has garments
+  if(garmentsInCategory.length>0){
+    category = garmentsInCategory[0].category;
+  }
+  // Render items
+  res.render("products", {isLoggedIn, category, garments: garmentsInCategory, allCategories});
+})
+
 router.get("/login", async (req, res) => {
   if (req.session.isLoggedIn) return res.redirect("/");
-  res.render("login", { error: req.query.error });
+  res.render("login", {error: req.query.error});
 });
 
 router.get("/signup", async (req, res) => {
   if (req.session.isLoggedIn) return res.redirect("/");
-  res.render("signup", { error: req.query.error });
+  res.render("signup", {error: req.query.error});
 });
 
-router.get("/private", checkAuth, ({ session: { isLoggedIn } }, res) => {
-  res.render("protected", { isLoggedIn });
+router.get("/private", checkAuth, ({session: {isLoggedIn}}, res) => {
+  res.render("protected", {isLoggedIn});
 });
 
 module.exports = router;

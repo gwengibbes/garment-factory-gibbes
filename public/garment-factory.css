@@ -78,8 +78,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--black);
+    background-color: var(--white);
     margin-bottom: 0;
+    border-bottom: solid 2px #000;
   }
 
   header a {
@@ -150,4 +151,15 @@
 
   footer p{
     text-align: center;
+  }
+
+  header a {
+    color: var(--blue);
+  }
+
+  .garment-banner {
+    background: url('/garment-banner.png') repeat-x;
+    background-size: contain;
+    height: 80px;
+    border-bottom: solid 2px #333;
   }

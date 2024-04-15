@@ -1,42 +1,39 @@
+<main>
+    <div>
+        <div>
+            <div>
+                <h2 class="text-center text-lg">Customer Favorites</h2>
+                <div class="row">
+                    {{#each customerFavourites}}
+                        <div class="col-12 col-md-4">
+                            <div class="mb-5">
+                            <div><img class="featured-image" src="./garment-images/{{this.garment.image}}"
+                                      alt="{{this.garment.name}}" width="100%" style="max-width: 200px"></div>
+                            <div>{{this.garment.name}}</div>
+                            <button class=" btn btn-primary btn-add-to-cart" data-garment="{{this.garment._id}}">Add to
+                                cart
+                            </button>
+                            </div>
+                        </div>
+                    {{/each }}
+                </div>
 
-        <header>
-            <div>
-                <a href="./"><h1>Fit Rite Garment Factory</h1></a>"
-            </div>
-        </header>
-        <div class="banner">
-        </div>
-        <main>
-            <div>
-                <div>
-                    <div>
-                        <h2 class="text-center text-lg">Customer Favorites</h2>
-                        <ul class="category-items">
-                            {{#each customerFavourites}}
-                            <li>
-                                <div><img class="featured-image" src="./garment-images/{{this.garment.image}}" alt="Customer Favorite Images Here"></div>
+                <h2 class="text-center text-lg">New Releases </h2>
+                <div class="row">
+                    {{#each newReleases}}
+                        <div class="col-12 col-md-4">
+                            <div class="mb-5">
+                                <div><img class="featured-image" src="./garment-images/{{this.garment.image}}"
+                                          alt="{{this.garment.name}}" width="100%" style="max-width: 200px"></div>
                                 <div>{{this.garment.name}}</div>
-                                <button class="btn-add-to-cart" data-garment="{{this.garment._id}}">Add to cart</button>
-                                
-                            </li>
-                            {{/each }}
-                        </ul>
-                        <h2 class="text-center text-lg">New Releases </h2>
-                    </div>
-                    <div class="text-center">
-                    <button class="btn-men" id="menButton">Men</button>
-                    <button class="btn-wommen" id="womenButton">Women</button>
-                     <button class="btn-children" id="childrenButton">Children</button>
-                      <button class="btn-sale" id="saleButton">Sale</button>
-                       <button class="btn-account" id="accountButton">Account</button>
-                        <button class="btn-cart" id="cartButton">Cart</button>
-                    </div>
-                    
-                    <img class="featured-image" src="" alt="Shop Now Image Here">
-                    <img class="featured-image" src="" alt="New Releases Images Here">
+                                <button class=" btn btn-primary btn-add-to-cart" data-garment="{{this.garment._id}}">Add to
+                                    cart
+                                </button>
+                            </div>
+                        </div>
+                    {{/each }}
                 </div>
             </div>
-            <section>
-            </section>
-        </main>
-    </body>
+        </div>
+    </div>
+</main>
